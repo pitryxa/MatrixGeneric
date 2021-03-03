@@ -1,10 +1,12 @@
-import java.util.Arrays;
+package matrix;
+
+import java.util.Random;
 import java.util.stream.IntStream;
 
 public class Matrix<T> implements Cloneable {
-    private final int rows;
-    private final int cols;
-    private final Object[][] matrix;
+    protected final int rows;
+    protected final int cols;
+    protected Object[][] matrix;
 
     public Matrix(int rows, int cols) {
         this.rows = rows;
@@ -16,6 +18,10 @@ public class Matrix<T> implements Cloneable {
         this.matrix = inputMatrix;
         this.rows = inputMatrix.length;
         this.cols = inputMatrix[0].length;
+    }
+
+    public Object[][] toArray() {
+        return matrix;
     }
 
     public T get(int row, int col) {
@@ -36,16 +42,6 @@ public class Matrix<T> implements Cloneable {
             data[i] = matrix[i][col];
         }
         return (T[]) data;
-    }
-
-    public Matrix<T> transpose() {
-        Object[][] data = new Object[cols][rows];
-        for (int i = 0; i < cols; i++) {
-            for (int j = 0; j < rows; j++) {
-                data[i][j] = matrix[j][i];
-            }
-        }
-        return new Matrix<>(data);
     }
 
     public String toString() {
@@ -88,8 +84,47 @@ public class Matrix<T> implements Cloneable {
         return hashCode;
     }
 
-//    public Matrix<T> fillInteger(IntStream ints) {
-//
-//    }
+    public Matrix<Integer> fillInteger(IntStream ints) {
+        int[] arr = ints.toArray();
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                int index = i * cols + j;
+                matrix[i][j] = arr[index];
+            }
+        }
+        return (Matrix<Integer>) this;
+    }
+
+    public Matrix<Integer> fillInteger(int origin, int bound) {
+        Random rnd = new Random();
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                matrix[i][j] = rnd.nextInt(bound - origin) + origin;
+            }
+        }
+        return (Matrix<Integer>) this;
+    }
+
+    public Matrix<Integer> fillInteger() {
+        Random rnd = new Random();
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                matrix[i][j] = rnd.nextInt();
+            }
+        }
+        return (Matrix<Integer>) this;
+    }
+
+    public int size() {
+        return rows * cols;
+    }
+
+    public int rows() {
+        return rows;
+    }
+
+    public int cols() {
+        return cols;
+    }
 }
 
