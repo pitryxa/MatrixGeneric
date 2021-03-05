@@ -24,7 +24,14 @@ public class Main {
         Matrix<Integer> intMatrix = new RandomMatrix<>(10, 10, rnd -> rnd.nextInt(12) - 5);
         Matrix<Double> doubleMatrix = new RandomMatrix<>(10, 10, rnd -> rnd.nextDouble());
 
-        System.out.println(doubleMatrix);
+        Matrix<Integer> newMatrix =
+                new RandomMatrix<>(
+                        new Matrix<>(
+                                new Integer[3][4]),
+                        Random::nextInt);
+
+
+        System.out.println(newMatrix);
 
 
 

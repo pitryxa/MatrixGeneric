@@ -2,7 +2,7 @@ package matrix;
 
 import java.util.Objects;
 
-public class Matrix<T extends Number> {
+public class Matrix<T extends Number> implements Cloneable {
     protected final int rows;
     protected final int cols;
     protected T[][] matrix;
