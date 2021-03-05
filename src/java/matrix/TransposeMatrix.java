@@ -1,15 +1,16 @@
 package matrix;
 
-public class TransposeMatrix extends BaseMatrix {
+public class TransposeMatrix<T extends Number> extends Matrix<T> {
 
-    public TransposeMatrix(Matrix matrix) {
-        super(matrix.cols(), matrix.rows());
+    public TransposeMatrix(Matrix<T> matrix) {
+        super(matrix.cols, matrix.rows);
         this.matrix = transpose(matrix);
     }
 
-    private Object[][] transpose(Matrix matrix) {
-        Object[][] data = new Object[rows][cols];
-        Object[][] m = matrix.toArray();
+    @SuppressWarnings("unchecked")
+    protected T[][] transpose(Matrix<T> matrix) {
+        T[][] data = (T[][]) new Number[rows][cols];
+        T[][] m = matrix.toArray();
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 data[i][j] = m[j][i];

@@ -1,24 +1,32 @@
 import matrix.*;
 
+import java.math.BigDecimal;
+import java.util.Random;
+
 public class Main {
     public static void main(String[] args) {
-        Matrix matrix = new NumericMatrix(new Integer[][] {
+        Matrix<Integer> matrix = new Matrix<>(new Integer[][] {
                 {2, 3, 3},
                 {5, 2, 6},
                 {9, 0, 4},
                 {4, 7, 7}
         });
 
-        Matrix otherMatrix = new ObjectMatrix(new Integer[][] {
+        Matrix<Integer> otherMatrix = new Matrix<>(new Integer[][] {
                 {2, 3, 3},
                 {5, 2, 6},
                 {9, 0, 4},
                 {4, 7, 7}
         });
 
-        Matrix transposeMatrix = new TransposeMatrix(matrix);
+        Matrix<Integer> transposeMatrix = new TransposeMatrix<>(matrix);
 
-        System.out.println(matrix.get(0, 0) * 5);
+        Matrix<Integer> intMatrix = new RandomMatrix<>(10, 10, rnd -> rnd.nextInt(12) - 5);
+        Matrix<Double> doubleMatrix = new RandomMatrix<>(10, 10, rnd -> rnd.nextDouble());
+
+        System.out.println(doubleMatrix);
+
+
 
 
 
