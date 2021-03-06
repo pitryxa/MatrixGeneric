@@ -1,4 +1,4 @@
-package matrix;
+package matrixgeneric;
 
 public class AdditionMatrix<T extends Number> extends Matrix<T> {
 

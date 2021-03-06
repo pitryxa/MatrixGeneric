@@ -1,4 +1,4 @@
-package matrix;
+package matrixgeneric;
 
 import java.util.Objects;
 
